@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="UserMacros">
+	<BinOrLib Condition="'$(ConfigurationType)'=='Application'">bin</BinOrLib>
+	<BinOrLib Condition="'$(ConfigurationType)'=='DynamicLibrary'">bin</BinOrLib>
+	<BinOrLib Condition="'$(ConfigurationType)'=='StaticLibrary'">lib</BinOrLib>
+  </PropertyGroup>
+  <PropertyGroup>
+	<TargetPath>$(BuildDir)$(BinOrLib)/$(TargetName)$(TargetExt)</TargetPath>
+    <IntDir>$(BuildDir)intermediate/$(ProjectName)/</IntDir>
+  </PropertyGroup>
+</Project>
