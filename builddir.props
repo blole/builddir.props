@@ -3,12 +3,20 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros">
     <BuildDir>$(SolutionDir)build/$(Configuration)/</BuildDir>
+    <BuildDirApp>$(BuildDir)bin/</BuildDirApp>
+    <BuildDirDll>$(BuildDir)bin/</BuildDirDll>
+    <BuildDirLib>$(BuildDir)lib/</BuildDirLib>
+    <BuildDirMakefile>$(BuildDir)bin/</BuildDirMakefile>
+    <BuildDirUtility>$(BuildDir)bin/</BuildDirUtility>
+    <BuildDirIntermediate>$(BuildDir)intermediate/</BuildDirIntermediate>
   </PropertyGroup>
   <PropertyGroup>
-    <OutDir Condition="'$(ConfigurationType)'=='Application'">$(BuildDir)bin/</OutDir>
-    <OutDir Condition="'$(ConfigurationType)'=='DynamicLibrary'">$(BuildDir)bin/</OutDir>
-    <OutDir Condition="'$(ConfigurationType)'=='StaticLibrary'">$(BuildDir)lib/</OutDir>
-    <IntDir>$(BuildDir)intermediate/$(ProjectName)/</IntDir>
+    <OutDir Condition="'$(ConfigurationType)'=='Application'">$(BuildDirApp)</OutDir>
+    <OutDir Condition="'$(ConfigurationType)'=='DynamicLibrary'">$(BuildDirDll)</OutDir>
+    <OutDir Condition="'$(ConfigurationType)'=='StaticLibrary'">$(BuildDirLib)</OutDir>
+    <OutDir Condition="'$(ConfigurationType)'=='Makefile'">$(BuildDirMakefile)</OutDir>
+    <OutDir Condition="'$(ConfigurationType)'=='Utility'">$(BuildDirUtility)</OutDir>
+    <IntDir>$(BuildDirIntermediate)$(ProjectName)/</IntDir>
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <ItemDefinitionGroup>
@@ -16,18 +24,36 @@
       <AdditionalIncludeDirectories>$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <OutputFile>$(BuildDir)bin/$(TargetFileName)</OutputFile>
-      <ProgramDatabaseFile>$(BuildDir)bin/$(TargetName).pdb</ProgramDatabaseFile>
-      <ProfileGuidedDatabase>$(BuildDir)lib/$(TargetName).pgd</ProfileGuidedDatabase>
-      <ImportLibrary>$(BuildDir)lib/$(TargetName).lib</ImportLibrary>
+      <OutputFile>$(OutDir)$(TargetFileName)</OutputFile>
+      <ProgramDatabaseFile>$(OutDir)$(TargetName).pdb</ProgramDatabaseFile>
+      <ProfileGuidedDatabase>$(BuildDirLib)$(TargetName).pgd</ProfileGuidedDatabase>
+      <ImportLibrary>$(BuildDirLib)$(TargetName).lib</ImportLibrary>
     </Link>
     <Lib>
-      <OutputFile>$(BuildDir)lib/$(TargetFileName)</OutputFile>
+      <OutputFile>$(BuildDirLib)$(TargetFileName)</OutputFile>
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
     <BuildMacro Include="BuildDir">
       <Value>$(BuildDir)</Value>
+    </BuildMacro>
+    <BuildMacro Include="BuildDirApp">
+      <Value>$(BuildDirApp)</Value>
+    </BuildMacro>
+    <BuildMacro Include="BuildDirDll">
+      <Value>$(BuildDirDll)</Value>
+    </BuildMacro>
+    <BuildMacro Include="BuildDirLib">
+      <Value>$(BuildDirLib)</Value>
+    </BuildMacro>
+    <BuildMacro Include="BuildDirMakefile">
+      <Value>$(BuildDirMakefile)</Value>
+    </BuildMacro>
+    <BuildMacro Include="BuildDirUtility">
+      <Value>$(BuildDirUtility)</Value>
+    </BuildMacro>
+    <BuildMacro Include="BuildDirIntermediate">
+      <Value>$(BuildDirIntermediate)</Value>
     </BuildMacro>
   </ItemGroup>
 </Project>

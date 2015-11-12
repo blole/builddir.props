@@ -1,5 +1,5 @@
 param($installPath, $toolsPath, $package, $project)
-$propertySheetPath = "$toolsPath\builddir.props"
+$propertySheetPath = "$toolsPath\..\build\builddir.props"
 
 
 function MovePropertySheetFirst($config, $propertySheet)

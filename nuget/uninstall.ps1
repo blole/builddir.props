@@ -1,5 +1,6 @@
 param($installPath, $toolsPath, $package, $project)
-$propertySheetPath = "$toolsPath\builddir.props"
+$propertySheetPath = "$toolsPath\..\build\builddir.props"
+
 
 $configs = $project.Properties.Item("Configurations").Object
 foreach ($config in $configs)
