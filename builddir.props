@@ -1,10 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <ImportGroup Label="PropertySheets">
-    <Import Project="$(MSBuildThisFileDirectory)builddir.macros.props" />
-  </ImportGroup>
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros">
+    <BuildDir>$(SolutionDir)build/$(Configuration)/</BuildDir>
+  </PropertyGroup>
   <PropertyGroup>
-    <OutDir>$(BuildDir)$(BinOrLib)/</OutDir>
+    <OutDir Condition="'$(ConfigurationType)'=='Application'">$(BuildDir)bin/</OutDir>
+    <OutDir Condition="'$(ConfigurationType)'=='DynamicLibrary'">$(BuildDir)bin/</OutDir>
+    <OutDir Condition="'$(ConfigurationType)'=='StaticLibrary'">$(BuildDir)lib/</OutDir>
     <IntDir>$(BuildDir)intermediate/$(ProjectName)/</IntDir>
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
@@ -22,4 +25,9 @@
       <OutputFile>$(BuildDir)lib/$(TargetFileName)</OutputFile>
     </Lib>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <BuildMacro Include="BuildDir">
+      <Value>$(BuildDir)</Value>
+    </BuildMacro>
+  </ItemGroup>
 </Project>

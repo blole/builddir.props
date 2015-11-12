@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>builddir.props</id>
+        <version>1.4.0</version>
+        <authors>blole</authors>
+        <owners>blole</owners>
+        <projectUrl>https://github.com/blole/builddir.props</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Installs a Visual Studio property sheet to use a separate build output directory</description>
+        <tags>native nativepackage C++</tags>
+    </metadata>
+    <files>
+        <file src="dummy.hpp" target="lib\native" />
+        <file src="install.ps1" target="tools" />
+        <file src="uninstall.ps1" target="tools" />
+        <file src="..\builddir.props" target="tools" />
+    </files>
+</package>
