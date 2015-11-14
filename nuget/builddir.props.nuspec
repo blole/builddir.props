@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>builddir.props</id>
-        <version>1.4.1</version>
+        <version>1.4.2</version>
         <authors>blole</authors>
         <owners>blole</owners>
         <projectUrl>https://github.com/blole/builddir.props</projectUrl>

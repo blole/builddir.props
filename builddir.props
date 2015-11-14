@@ -22,16 +22,12 @@
   <ItemDefinitionGroup>
     <ClCompile>
       <AdditionalIncludeDirectories>$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ProgramDataBaseFileName Condition="'$(ConfigurationType)'=='StaticLibrary'">$(OutDir)$(TargetName).pdb</ProgramDataBaseFileName>
     </ClCompile>
     <Link>
-      <OutputFile>$(OutDir)$(TargetFileName)</OutputFile>
-      <ProgramDatabaseFile>$(OutDir)$(TargetName).pdb</ProgramDatabaseFile>
       <ProfileGuidedDatabase>$(BuildDirLib)$(TargetName).pgd</ProfileGuidedDatabase>
       <ImportLibrary>$(BuildDirLib)$(TargetName).lib</ImportLibrary>
     </Link>
-    <Lib>
-      <OutputFile>$(BuildDirLib)$(TargetFileName)</OutputFile>
-    </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
     <BuildMacro Include="BuildDir">
