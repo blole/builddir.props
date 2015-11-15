@@ -10,7 +10,13 @@
     <OutDir Condition="'$(ConfigurationType)'=='StaticLibrary'">$(BuildDir)lib\</OutDir>
     <OutDir Condition="'$(ConfigurationType)'=='Makefile'">$(BuildDir)bin\</OutDir>
     <OutDir Condition="'$(ConfigurationType)'=='Utility'">$(BuildDir)bin\</OutDir>
+    <OutputPath>$(OutDir)</OutputPath>
+    <TargetDir>$(OutDir)</TargetDir>
+    <TargetPath>$(TargetDir)$(TargetFileName)</TargetPath>
     <IntDir>$(BuildDir)intermediate\$(ProjectName)\</IntDir>
+	<TLogLocation>$(IntDir)$(ProjectName).tlog\</TLogLocation>
+	<LastBuildState>$(TLogLocation)$(ProjectName).lastbuildstate</LastBuildState>
+	<LastBuildUnsuccessful>$(TLogLocation)unsuccessful</LastBuildUnsuccessful>
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <ItemDefinitionGroup>
