@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
-        <id>builddir.props</id>
-        <version>1.6.0</version>
+        <id>builddir</id>
+        <version>3.0.0</version>
         <authors>blole</authors>
         <owners>blole</owners>
-        <projectUrl>https://github.com/blole/builddir.props</projectUrl>
+        <projectUrl>https://github.com/blole/visual-studio-builddir</projectUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>Installs a Visual Studio property sheet to use a separate build output directory</description>
+        <description>build projects in a separate output directory</description>
         <tags>native nativepackage C++</tags>
     </metadata>
     <files>
