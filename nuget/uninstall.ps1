@@ -1,10 +1,10 @@
 param($installPath, $toolsPath, $package, $project)
-$propertySheetPath = "$toolsPath\..\build\builddir.props"
+$DTE.ExecuteCommand("File.SaveAll")
+$projectMSBuild = [Microsoft.Build.Construction.ProjectRootElement]::Open($project.FullName)
 
-
-$configs = $project.Properties.Item("Configurations").Object
-foreach ($config in $configs)
+foreach ($import in $projectMSBuild.Imports | where {$_.Project.endsWith("\builddir.props")})
 {
-	$propertySheet = $config.AddPropertySheet($propertySheetPath)
-	$config.RemovePropertySheet($propertySheet)
+	$import.Parent.RemoveChild($import)
 }
+
+$projectMSBuild.Save()

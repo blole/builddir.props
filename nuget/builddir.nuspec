@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>builddir</id>
-        <version>3.0.0</version>
+        <version>3.0.5</version>
         <authors>blole</authors>
         <owners>blole</owners>
         <projectUrl>https://github.com/blole/visual-studio-builddir</projectUrl>
@@ -14,6 +14,6 @@
         <file src="dummy.hpp" target="lib\native" />
         <file src="install.ps1" target="tools" />
         <file src="uninstall.ps1" target="tools" />
-        <file src="..\builddir.props" target="build" />
+        <file src="..\builddir.props" target="tools" />
     </files>
 </package>

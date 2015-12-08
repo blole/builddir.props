@@ -1,25 +1,25 @@
 param($installPath, $toolsPath, $package, $project)
-$propertySheetPath = "$toolsPath\..\build\builddir.props"
+$DTE.ExecuteCommand("File.SaveAll")
+$projectMSBuild = [Microsoft.Build.Construction.ProjectRootElement]::Open($project.FullName)
 
+# get relative path to builddir.props
+Push-Location
+Set-Location $project.Properties.Item("ProjectDirectory").Value
+$builddirRelPath = Resolve-Path -Relative "$toolsPath\builddir.props"
+Pop-Location
 
-function MovePropertySheetFirst($config, $propertySheet)
+# The goal is to add something like this to the projects' .vcxproj:
+#
+# <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+#+  <Import Project="..\packages\builddir.x.y.z\tools\builddir.props" Condition="exists('..\packages\builddir.x.y.z\tools\builddir.props')" />
+#   ...
+# </ImportGroup>
+
+foreach ($propertySheetGroup in $projectMSBuild.ImportGroups | where {$_.Label -eq "PropertySheets"})
 {
-	try
-	{
-		while ($True)
-		{
-			$config.MovePropertySheet($propertySheet, $False)
-		}
-	}
-	catch [ArgumentException]
-	{
-	}
+	$import = $projectMSBuild.CreateImportElement($builddirRelPath);
+	$import.Condition = "exists('"+$builddirRelPath+"')"
+	$propertySheetGroup.PrependChild($import)
 }
 
-
-$configs = $project.Properties.Item("Configurations").Object
-foreach ($config in $configs)
-{
-	$propertySheet = $config.AddPropertySheet($propertySheetPath)
-	MovePropertySheetFirst $config $propertySheet
-}
+$projectMSBuild.Save()
