@@ -1,5 +1,6 @@
 param($installPath, $toolsPath, $package, $project)
-$DTE.ExecuteCommand("File.SaveAll")
+#TODO: unload and then reload project instead of saving
+$project.Save()
 $projectMSBuild = [Microsoft.Build.Construction.ProjectRootElement]::Open($project.FullName)
 
 # get relative path to builddir.props
@@ -21,5 +22,4 @@ foreach ($propertySheetGroup in $projectMSBuild.ImportGroups | where {$_.Label -
 	$import.Condition = "exists('"+$builddirRelPath+"')"
 	$propertySheetGroup.PrependChild($import)
 }
-
 $projectMSBuild.Save()
