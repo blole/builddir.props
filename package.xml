@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ProjectSchemaDefinitions xmlns="clr-namespace:Microsoft.Build.Framework.XamlTypes;assembly=Microsoft.Build.Framework">
+  <Rule Name="builddir-uiextension" PageTemplate="tool" DisplayName="NuGet Dependencies" Order="1">
+    <Rule.Categories>
+      <Category Name="builddir" DisplayName="builddir" />
+    </Rule.Categories>
+
+    <Rule.DataSource>
+      <DataSource Persistence="ProjectFile" ItemType="" SourceOfDefaultValue="BeforeContext" />
+    </Rule.DataSource>
+	
+    <StringProperty Category="builddir" Name="BuildDir" DisplayName="Build Directory" Subtype="Folder" Description="Specify the separate output directory under which to place the bin\, lib\ and intermediate\ folders. Should have a trailing slash." />
+  </Rule>
+</ProjectSchemaDefinitions>

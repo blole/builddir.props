@@ -1,13 +1,17 @@
 param($installPath, $toolsPath, $package, $project)
-#TODO: unload and then reload project instead of saving
-$project.Save()
-$projectMSBuild = [Microsoft.Build.Construction.ProjectRootElement]::Open($project.FullName)
+. $toolsPath\funcs.ps1
 
-# get relative path to builddir.props
-Push-Location
-Set-Location $project.Properties.Item("ProjectDirectory").Value
-$builddirRelPath = Resolve-Path -Relative "$toolsPath\builddir.props"
-Pop-Location
+$projectName = $project.Name
+$projectFullName = $project.FullName
+$projectDir = $project.Properties.Item("ProjectDirectory").Value
+$builddirRelPath = Relative-Path $projectDir "$toolsPath\builddir.props"
+
+
+Select-Project $projectName
+$dte.ExecuteCommand("Project.UnloadProject")
+$projectMSBuild = [Microsoft.Build.Construction.ProjectRootElement]::Open($projectFullName)
+
+
 
 # The goal is to add something like this to the projects' .vcxproj:
 #
@@ -22,4 +26,9 @@ foreach ($propertySheetGroup in $projectMSBuild.ImportGroups | where {$_.Label -
 	$import.Condition = "exists('"+$builddirRelPath+"')"
 	$propertySheetGroup.PrependChild($import)
 }
+
+
+
 $projectMSBuild.Save()
+Select-Project $projectName
+$dte.ExecuteCommand("Project.ReloadProject")

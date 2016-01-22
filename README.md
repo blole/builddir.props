@@ -1,8 +1,11 @@
 #visual-studio-builddir
 Visual Studio property sheet to use a separate build output directory.
 
-The `builddir.props` property sheet defines a new user macro, `$(BuildDir)`, set to `$(SolutionDir)build\$(Configuration)\` by default.
+The `builddir.props` property sheet defines a new macro, `$(BuildDir)`, set to `$(SolutionDir)build\$(Configuration)\` by default.
 All intermediate and final output files from the compilation will be placed under this directory.
+
+The `package.xml` file makes it possible to modify this macro on a per project and configuration basis by adding an option in the Property Pages of the project.
+You can find it under: Configuration Properties > NuGet Dependencies > builddir > Build Directory
 
 ##Example output directory structure
 Using the default `$(BuildDir)`, when compiling a solution with three projects:
@@ -55,5 +58,5 @@ Add this project as a submodule from command line:
 and then follow the manual instructions.
 
 ###Manual
-Download the builddir.props file and then add it to all your projects in Visual Studio:  
+Download the builddir.props and package.xml files and then add builddir.props to all your projects in Visual Studio:  
 View > Property Manager > select all your projects > right-click > Add Existing Property Sheet > select builddir.props
