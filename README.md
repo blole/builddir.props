@@ -1,4 +1,4 @@
-#visual-studio-builddir
+#nuget-builddir
 Visual Studio property sheet to use a separate build output directory.
 
 The `builddir.props` property sheet defines a new macro, `$(BuildDir)`, set to `$(SolutionDir)build\$(Configuration)\` by default.
@@ -54,7 +54,7 @@ Run the following in the [Package Manager Console](http://docs.nuget.org/docs/st
 
 ###Git submodule
 Add this project as a submodule from command line:  
-`git submodule add https://github.com/blole/visual-studio-builddir`  
+`git submodule add https://github.com/blole/nuget-builddir`  
 and then follow the manual instructions.
 
 ###Manual

@@ -5,7 +5,7 @@
 		<version>3.2.1</version>
 		<authors>blole</authors>
 		<owners>blole</owners>
-		<projectUrl>https://github.com/blole/visual-studio-builddir</projectUrl>
+		<projectUrl>https://github.com/blole/nuget-builddir</projectUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>build projects in a separate output directory</description>
 		<tags>native nativepackage C++</tags>
